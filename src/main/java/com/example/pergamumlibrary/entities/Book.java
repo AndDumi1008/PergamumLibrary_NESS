@@ -1,8 +1,8 @@
 package com.example.pergamumlibrary.entities;
 
 public class Book implements Comparable<Book> {
-    private String title;
     private String author;
+    private String title;
     private final Integer id;
 
     private static int nextId = 1;

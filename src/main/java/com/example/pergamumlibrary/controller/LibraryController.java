@@ -48,13 +48,21 @@ public class LibraryController {
         return listOfBooks;
     }
 
-    @RequestMapping("/{id}/delete")
-    public String deleteBook(@PathVariable final Integer id) {
-        if(searchBook(id)) {
+//    @RequestMapping("/{id}/delete")
+//    public String deleteBook(@PathVariable final Integer id) { //using GET Method to delete a book
+//        if(searchBook(id)) {
+//            listOfBooks.remove(temp);
+//        }
+//        getAllBooks();
+//        return "here should delete books";
+//    }
+
+    @DeleteMapping("")
+    public void deleteBook(@RequestBody final Book book) { // Using DEL Method to delete a book (using body)
+        if(searchBook(book.getId())) {
             listOfBooks.remove(temp);
         }
         getAllBooks();
-        return "here should delete books";
     }
 
     @RequestMapping("/search/title={title}")
@@ -81,7 +89,7 @@ public class LibraryController {
     }
 
     @RequestMapping("/search/id={id}")
-    public Boolean searchBook(@PathVariable Integer id) {
+    public Boolean searchBook(@PathVariable final Integer id) {
         Optional<Book> bookFound = findById(listOfBooks, id);
 
         if(bookFound.isPresent()) {
@@ -92,15 +100,24 @@ public class LibraryController {
         return false;
     }
 
-    @RequestMapping("/{id}/update/author={author}")
-    public String updateBook(@PathVariable final Integer id,@PathVariable final String author) { // Update author of a book found by id with GET Method. Could also be in PUT format
+//    @RequestMapping("/{id}/update/author={author}")
+//    public String updateBook(@PathVariable final Integer id,@PathVariable final String author) { // Update author of a book found by id with GET Method. Could also be in PUT format
+//
+//        if(searchBook(id)) {
+//            temp.setAuthor(author);
+//            return "Author was changed... \nTitle: " + temp.getTitle() + "\nAuthor: " + temp.getAuthor();
+//        }
+//
+//        getAllBooks();
+//        return "here should update books";
+//    }
+
+    @PatchMapping("/{id}/")
+    public void updateBook(@PathVariable final Integer id,@RequestBody final Book book) { // Update author of a book found by id with PATCH Method.
 
         if(searchBook(id)) {
-            temp.setAuthor(author);
-            return "Author was changed... \nTitle: " + temp.getTitle() + "\nAuthor: " + temp.getAuthor();
+            temp.setAuthor(book.getAuthor());
         }
-
         getAllBooks();
-        return "here should update books";
     }
 }
