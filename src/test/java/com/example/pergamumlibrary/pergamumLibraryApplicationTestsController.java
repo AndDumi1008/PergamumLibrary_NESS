@@ -1,0 +1,15 @@
+package com.example.pergamumlibrary;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class pergamumLibraryApplicationTestsController {
+
+
+    @Test
+    void contextLoads() {
+
+    }
+
+}

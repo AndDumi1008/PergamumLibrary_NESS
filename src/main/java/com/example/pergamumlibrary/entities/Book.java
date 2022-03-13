@@ -1,9 +1,9 @@
-package com.example.pergamumlibrary;
+package com.example.pergamumlibrary.entities;
 
 public class Book implements Comparable<Book> {
     private String title;
     private String author;
-    private Integer id;
+    private final Integer id;
 
     private static int nextId = 1;
 
@@ -43,14 +43,7 @@ public class Book implements Comparable<Book> {
             return 1;
         }
         else{   //when is the same author
-            if(this.title.compareTo(o.title) < 0){
-                return -1;
-            }
-            else if(this.title.compareTo(o.title) > 0) {
-                return 1;
-            }
-            else
-            return 0;
+            return Integer.compare(this.title.compareTo(o.title), 0);
         }
     }
 }
